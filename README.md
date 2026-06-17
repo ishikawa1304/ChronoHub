@@ -110,3 +110,4 @@ Por defecto, ChronoHub creará una base de datos local SQLite para que puedas ej
 **La página no carga en el navegador**
 → Espera unos segundos y recarga. Si el problema persiste, verifica que la ventana del backend siga abierta y no muestre errores en rojo.
 "# ChronoHub" 
+"# ChronoHub" 

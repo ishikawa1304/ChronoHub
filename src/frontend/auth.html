@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChronoHub - Autenticación</title>
+    <meta name="description" content="Inicia sesión o regístrate en ChronoHub para administrar tus tareas, horarios y reuniones.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div class="auth-page-wrapper">
+        <div class="auth-card-container" id="auth-card-container">
+            
+            <!-- BRAND LOGO -->
+            <div class="auth-brand">
+                <div class="logo-icon">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" style="overflow: visible;">
+                        <defs>
+                            <linearGradient id="logoGradAuth" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00d2ff" />
+                                <stop offset="100%" stop-color="#00b4ec" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Hoja de fondo celeste rellena -->
+                        <path d="M8 2h5.5l4.5 4.5v11c0 .83-.67 1.5-1.5 1.5h-8c-.83 0-1.5-.67-1.5-1.5v-14c0-.83.67-1.5 1.5-1.5z" fill="url(#logoGradAuth)" />
+                        <!-- Esquina doblada con sombra/tono oscuro -->
+                        <path d="M13.5 2v2.5c0 1.1.9 2 2 2H18L13.5 2z" fill="#009ecb" />
+                        <!-- Círculo de separación blanco -->
+                        <circle cx="10" cy="13.5" r="5.5" fill="white" />
+                        <!-- Círculo azul oscuro -->
+                        <circle cx="10" cy="13.5" r="4.5" fill="#0056b3" />
+                        <!-- Checkmark blanco grueso -->
+                        <path d="M7.8 13.5l1.5 1.5 4-4" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="logo-text">ChronoHub</span>
+            </div>
+
+            <!-- LOGIN CARD -->
+            <div class="auth-card active" id="card-login">
+                <h2 class="auth-title">Bienvenido de nuevo</h2>
+                <p class="auth-subtitle">Ingresa tus credenciales para acceder al panel.</p>
+
+                <form id="login-form" novalidate>
+                    <div class="form-group">
+                        <label for="login-email">Correo electrónico</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <input type="email" id="login-email" required placeholder="ejemplo@correo.com">
+                        </div>
+                        <span class="error-msg" id="login-email-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="label-row">
+                            <label for="login-password">Contraseña</label>
+                            <a href="#" class="auth-link" id="to-forgot-pwd">¿Olvidaste tu contraseña?</a>
+                        </div>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            <input type="password" id="login-password" required placeholder="••••••••">
+                            <button type="button" class="btn-toggle-password" tabindex="-1">
+                                <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                        <span class="error-msg" id="login-password-error"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="login-remember">
+                            <span class="checkmark"></span>
+                            <span class="checkbox-label">Recordarme</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-auth-primary" id="btn-login-submit">
+                        <span>Iniciar Sesión</span>
+                        <svg class="btn-spinner hidden" viewBox="0 0 50 50"><circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"></circle></svg>
+                    </button>
+                </form>
+
+                <div class="auth-footer">
+                    <span>¿No tienes una cuenta? <a href="#" class="auth-link" id="to-register">Regístrate</a></span>
+                </div>
+            </div>
+
+            <!-- REGISTER CARD -->
+            <div class="auth-card" id="card-register">
+                <h2 class="auth-title">Crear una cuenta</h2>
+                <p class="auth-subtitle">Organiza tus tareas, horarios y reuniones en un solo lugar.</p>
+
+                <form id="register-form" novalidate>
+                    <div class="form-group">
+                        <label for="register-name">Nombre completo</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <input type="text" id="register-name" required placeholder="Tu nombre y apellido">
+                        </div>
+                        <span class="error-msg" id="register-name-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-email">Correo electrónico</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <input type="email" id="register-email" required placeholder="ejemplo@correo.com">
+                        </div>
+                        <span class="error-msg" id="register-email-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-password">Contraseña</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            <input type="password" id="register-password" required placeholder="Mínimo 6 caracteres">
+                            <button type="button" class="btn-toggle-password" tabindex="-1">
+                                <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </div>
+                        <span class="error-msg" id="register-password-error"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="register-confirm-password">Confirmar contraseña</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                            <input type="password" id="register-confirm-password" required placeholder="Repite tu contraseña">
+                        </div>
+                        <span class="error-msg" id="register-confirm-password-error"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="register-terms" required>
+                            <span class="checkmark"></span>
+                            <span class="checkbox-label">Acepto los <a href="#" class="auth-link" id="open-terms">términos y condiciones</a></span>
+                        </label>
+                        <span class="error-msg" id="register-terms-error" style="display:block; margin-top:4px;"></span>
+                    </div>
+
+                    <button type="submit" class="btn-auth-primary" id="btn-register-submit">
+                        <span>Registrarse</span>
+                        <svg class="btn-spinner hidden" viewBox="0 0 50 50"><circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"></circle></svg>
+                    </button>
+                </form>
+
+                <div class="auth-footer">
+                    <span>¿Ya tienes una cuenta? <a href="#" class="auth-link" id="to-login">Inicia Sesión</a></span>
+                </div>
+            </div>
+
+            <!-- FORGOT PASSWORD CARD -->
+            <div class="auth-card" id="card-forgot">
+                <h2 class="auth-title">Restablecer contraseña</h2>
+                <p class="auth-subtitle">Ingresa tu correo para recibir un enlace de recuperación.</p>
+
+                <form id="forgot-form" novalidate>
+                    <div class="form-group">
+                        <label for="forgot-email">Correo electrónico</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <input type="email" id="forgot-email" required placeholder="ejemplo@correo.com">
+                        </div>
+                        <span class="error-msg" id="forgot-email-error"></span>
+                    </div>
+
+                    <button type="submit" class="btn-auth-primary" id="btn-forgot-submit">
+                        <span>Enviar enlace de recuperación</span>
+                        <svg class="btn-spinner hidden" viewBox="0 0 50 50"><circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"></circle></svg>
+                    </button>
+                </form>
+
+                <div class="auth-footer">
+                    <span><a href="#" class="auth-link" id="forgot-back-to-login">Volver al inicio de sesión</a></span>
+                </div>
+            </div>
+
+            <!-- VERIFY EMAIL CARD -->
+            <div class="auth-card" id="card-verify">
+                <div class="verify-icon-wrapper">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </div>
+                <h2 class="auth-title">Verifica tu correo</h2>
+                <p class="auth-subtitle" id="verify-subtitle">Enviamos un código de 6 dígitos a tu correo. Ingrésalo a continuación.</p>
+
+                <form id="verify-form" novalidate>
+                    <!-- Código de 6 dígitos -->
+                    <div class="form-group">
+                        <label>Código de verificación</label>
+                        <div class="otp-container" id="otp-container">
+                            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" id="otp-0" autocomplete="one-time-code">
+                            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" id="otp-1">
+                            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" id="otp-2">
+                            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" id="otp-3">
+                            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" id="otp-4">
+                            <input class="otp-input" type="text" maxlength="1" inputmode="numeric" id="otp-5">
+                        </div>
+                        <span class="error-msg" id="verify-code-error"></span>
+                    </div>
+
+                    <button type="submit" class="btn-auth-primary" id="btn-verify-submit">
+                        <span>Verificar cuenta</span>
+                        <svg class="btn-spinner hidden" viewBox="0 0 50 50"><circle cx="25" cy="25" r="20" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"></circle></svg>
+                    </button>
+                </form>
+
+                <div class="auth-footer" style="flex-direction:column; gap:10px;">
+                    <span id="resend-timer-text" style="color:var(--text-muted); font-size:13px;">
+                        ¿No recibiste el código? Reenviar en <strong id="resend-countdown">60</strong>s
+                    </span>
+                    <button class="btn-resend hidden" id="btn-resend-code">
+                        Reenviar código
+                    </button>
+                    <a href="#" class="auth-link" id="verify-back-to-register" style="font-size:13px;">Volver al registro</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Toast container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- TERMS & CONDITIONS MODAL -->
+    <div class="terms-overlay" id="terms-overlay" role="dialog" aria-modal="true" aria-labelledby="terms-modal-title">
+        <div class="terms-modal">
+            <div class="terms-modal-header">
+                <h2 id="terms-modal-title">Términos y Condiciones</h2>
+                <button class="terms-close-btn" id="close-terms" aria-label="Cerrar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="terms-modal-body">
+                <p class="terms-updated">Última actualización: Junio 2026</p>
+
+                <h3>1. Aceptación de los términos</h3>
+                <p>Al registrarte en ChronoHub, aceptas cumplir con estos Términos y Condiciones. Si no estás de acuerdo con alguno de ellos, no debes usar el servicio.</p>
+
+                <h3>2. Descripción del servicio</h3>
+                <p>ChronoHub es una aplicación web de gestión de productividad personal que permite organizar tareas, eventos y reuniones. El servicio se ofrece tal como está, con fines académicos y de desarrollo.</p>
+
+                <h3>3. Registro y cuenta de usuario</h3>
+                <p>Para usar ChronoHub debes registrarte con un correo electrónico válido y una contraseña. Eres responsable de mantener la confidencialidad de tus credenciales y de todas las actividades que ocurran bajo tu cuenta.</p>
+
+                <h3>4. Uso aceptable</h3>
+                <p>Aceptas utilizar ChronoHub únicamente para fines lícitos. Queda prohibido:</p>
+                <ul>
+                    <li>Usar el servicio para actividades ilegales o fraudulentas.</li>
+                    <li>Intentar acceder de forma no autorizada a otros datos o sistemas.</li>
+                    <li>Subir contenido malicioso o que infrinja derechos de terceros.</li>
+                </ul>
+
+                <h3>5. Privacidad de los datos</h3>
+                <p>Recopilamos únicamente los datos necesarios para el funcionamiento del servicio (nombre, correo electrónico y contenido creado por el usuario). No compartimos tu información personal con terceros. Los datos se almacenan de forma segura y se usan exclusivamente para brindarte el servicio.</p>
+
+                <h3>6. Propiedad intelectual</h3>
+                <p>El código fuente, diseño e interfaz de ChronoHub son propiedad de sus desarrolladores. El contenido que creas (tareas, eventos, notas) te pertenece a ti.</p>
+
+                <h3>7. Limitación de responsabilidad</h3>
+                <p>ChronoHub se proporciona con fines académicos. No garantizamos disponibilidad continua del servicio ni nos responsabilizamos por pérdidas de datos derivadas de fallos técnicos.</p>
+
+                <h3>8. Modificaciones</h3>
+                <p>Nos reservamos el derecho de actualizar estos términos en cualquier momento. Cualquier cambio será notificado a través de la plataforma. El uso continuado del servicio implica la aceptación de los términos actualizados.</p>
+
+                <h3>9. Contacto</h3>
+                <p>Si tienes preguntas sobre estos términos, puedes contactarnos a través del correo de soporte del proyecto.</p>
+            </div>
+            <div class="terms-modal-footer">
+                <button class="btn-auth-primary" id="accept-terms-btn">Entendido</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

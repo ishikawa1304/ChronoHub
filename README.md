@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ChronoHub 🕐
 
 **ChronoHub** es tu centro de control personal para organizar el día a día. Desde una sola pantalla puedes gestionar tus tareas pendientes, planificar tu horario semanal, coordinar reuniones y medir tu productividad con sesiones de enfoque estilo Pomodoro.
@@ -109,5 +110,8 @@ Por defecto, ChronoHub creará una base de datos local SQLite para que puedas ej
 
 **La página no carga en el navegador**
 → Espera unos segundos y recarga. Si el problema persiste, verifica que la ventana del backend siga abierta y no muestre errores en rojo.
+"# ChronoHub" 
+=======
+>>>>>>> 80e617a1e5dca395ac0e4749e4d6cfc21c37524f
 "# ChronoHub" 
 "# ChronoHub" 
